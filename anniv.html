@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Countdown to Anniversary</title>
+<style>
+   body {
+     margin: 0;
+     padding: 0;
+     display: flex;
+     flex-direction: column;
+     justify-content: center;
+     align-items: center;
+     height: 100vh;
+     background: linear-gradient(to right, #ffafbd, #ffc3a0);
+     font-family: 'Arial', sans-serif;
+   }
+   .countdown {
+     font-size: 1.8rem;
+     color: #fff;
+     text-align: center;
+     margin-bottom: 20px;
+   }
+   .button-container {
+     text-align: center;
+     margin-bottom: 20px;
+   }
+   button {
+     background-color: #ff6f61;
+     color: white;
+     border: none;
+     padding: 10px 20px;
+     font-size: 1.2rem;
+     border-radius: 5px;
+     margin: 10px;
+     cursor: pointer;
+     transition: 0.3s;
+   }
+   button:hover {
+     background-color: #e5554d;
+   }
+   .container {
+     text-align: center;
+     display: none;
+   }
+   h1 {
+     font-size: 3rem;
+     color: #fff;
+     margin-bottom: 20px;
+     animation: fadeIn 3s ease-in-out infinite alternate;
+   }
+   p {
+     font-size: 1.5rem;
+     color: #fff;
+   }
+   .heart {
+     font-size: 5rem;
+     color: #ff6f61;
+     animation: beat 1s infinite alternate;
+   }
+   @keyframes fadeIn {
+     from {
+       opacity: 0.6;
+     }
+     to {
+       opacity: 1;
+     }
+   }
+   @keyframes beat {
+     from {
+       transform: scale(1);
+     }
+     to {
+       transform: scale(1.2);
+     }
+   }
+</style>
+</head>
+<body>
+<div class="countdown" id="countdown">
+<!-- Countdown message will appear here -->
+</div>
+<div class="button-container">
+<button onclick="showMessage()">Click Me!!!</button>
+<button id="anniversaryButton" onclick="showAnniversary()" style="display:none;">Anniversary Greeting</button>
+</div>
+<div class="container" id="message">
+<h1>Hi My Loveeecakes! :)</h1>
+<p>
+     I’m so lucky to have you in my life. Every day with you is a blessing, Dont give up until the end. ILOOVEYOUU 
+</p>
+</div>
+<div class="container" id="anniversary">
+<h1>Happy Anniversary, Love!</h1>
+<div class="heart">❤️</div>
+<p>
+     Every moment with you is a treasure.<br>
+     Here's to many more years of love and laughter!<br>
+     You mean the world to me.
+</p>
+</div>
+<script>
+   function updateCountdown() {
+     const today = new Date();
+     const targetDate = new Date(today.getFullYear(), 0, 18); // January 18
+     const timeDiff = targetDate - today;
+     const daysLeft = Math.ceil(timeDiff / (1000 * 60 * 60 * 24));
+     const countdownElement = document.getElementById('countdown');
+     const anniversaryButton = document.getElementById('anniversaryButton');
+     if (daysLeft > 0) {
+       countdownElement.textContent = `Only ${daysLeft} day${daysLeft > 1 ? 's' : ''} left until our special day!`;
+     } else if (daysLeft === 0) {
+       countdownElement.textContent = `Today is the day! 🎉`;
+       anniversaryButton.style.display = 'inline-block'; // Show the Anniversary Greeting button
+     } else {
+       countdownElement.textContent = `Happy belated anniversary, love! 🎉`;
+       anniversaryButton.style.display = 'inline-block'; // Keep button visible after January 18
+     }
+   }
+   function showMessage() {
+     document.getElementById('message').style.display = 'block';
+     document.getElementById('anniversary').style.display = 'none';
+   }
+   function showAnniversary() {
+     document.getElementById('anniversary').style.display = 'block';
+     document.getElementById('message').style.display = 'none';
+   }
+   updateCountdown(); // Initial call
+   setInterval(updateCountdown, 1000 * 60 * 60 * 24); // Update every day
+</script>
+</body>
+</html>
